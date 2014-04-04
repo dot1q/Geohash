@@ -1,0 +1,14 @@
+README
+
+Description: This Repo contains all data for the Geohashing Google Glass project
+
+PHP Side---
+
+Files: 
+	index.php
+
+Purpose:
+	This php file outputs current hashpoint for the location of long and lat parameters. Depending on server time, it will calculate the time for New York and check if it is between 12am and 8:59 am. If so, it returns an error, that the hashpoint cannot be calculated yet. Otherwise it calcualtes the haspoint and prints it out on the screen
+
+Usage:
+	install these file(s) into a empty directory and run index.php?lat=xx&long=xxx
