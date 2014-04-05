@@ -1,4 +1,9 @@
 <?php
+// Set vars to 0
+$finalLong = 0;
+$finalLat = 0;
+$error = 0;
+
 // Get location
 $long = (int)$_GET["long"];
 $lat = (int)$_GET["lat"];
@@ -12,9 +17,11 @@ $date = date('Y/m/d', time());
 
 //Check if time is between 12am and 8:59am, and return error if it is true
 if ((date('G')>=0) && ((date('G')<=8) && (date('i')<60))){
-	echo 'Hashpoint is currently not available';
+	//echo 'Hashpoint is currently not available';
+	$error = 1;
 }else{
-	echo 'Hashpoint is available <br />';
+	//echo 'Hashpoint is available <br />';
+	$error = 0;
 	
 	//Get Dow Opening
 	//You many manually set a date by using the layout below
@@ -46,8 +53,11 @@ if ((date('G')>=0) && ((date('G')<=8) && (date('i')<60))){
 	}
 	$finalLong = $long.substr($total, 1);
 
-	//Print out the cords
-	echo number_format($finalLat,6) . '<br />';
-	echo number_format($finalLong,6);
+	//Print out the cords *debugging*
+	//echo number_format($finalLat,6) . '<br />';
+	//echo number_format($finalLong,6);
 }
+//Output in JSON
+$arr = array('error' => $error, 'lat' => number_format($finalLat,6), 'long' => number_format($finalLong,6) );
+echo json_encode($arr);
 ?>
