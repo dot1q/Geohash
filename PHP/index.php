@@ -58,6 +58,6 @@ if ((date('G')>=0) && ((date('G')<=8) && (date('i')<60))){
 	//echo number_format($finalLong,6);
 }
 //Output in JSON
-$arr = array('error' => $error, 'lat' => number_format($finalLat,6), 'long' => number_format($finalLong,6) );
-echo json_encode($arr);
+$arr = array('name' => $date.' Hashpoint', 'error' => $error, 'latitude' => number_format($finalLat,6), 'longitude' => number_format($finalLong,6) );
+echo '{ "landmarks": [ '.json_encode($arr).' ] }';
 ?>
